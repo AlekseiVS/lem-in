@@ -6,13 +6,25 @@
 /*   By: osokoliu <osokoliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/24 12:30:19 by osokoliu          #+#    #+#             */
-/*   Updated: 2018/05/28 15:43:29 by osokoliu         ###   ########.fr       */
+/*   Updated: 2018/05/29 13:51:32 by osokoliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "lemin.h"
 #include <stdio.h>
+
+int ft_queue(t_road *buff, char *name_room)
+{
+    while (buff)
+    {
+        if (!ft_strcmp(name_room, buff->n_r))
+            return (0);
+        buff = buff->next;
+    }
+    return (1);
+}
+
 
 int ft_way(t_listlemin **head)
 {
@@ -22,6 +34,7 @@ int ft_way(t_listlemin **head)
     t_road *buff;
     t_road *buff2;
     t_road *buff3;
+    t_road *buff4;
   
     
     tmp1 = *head;
@@ -40,8 +53,10 @@ int ft_way(t_listlemin **head)
             if (!new_node)
             {
                 new_node = (t_road*)malloc(sizeof(t_road));
+                new_node->next = NULL;
                 buff = new_node;
                 new_node->n_r = ft_strdup(tmp1->link[i]->name_room);
+                tmp1->link[i]->from = ft_strdup(tmp1->name_room);
                 tmp1->link[i]->step = j;
                 i++;
                 while (tmp1->link[i])
@@ -49,8 +64,9 @@ int ft_way(t_listlemin **head)
                     new_node->next = (t_road*)malloc(sizeof(t_road));
                     new_node = new_node->next;
                     new_node->n_r = ft_strdup(tmp1->link[i]->name_room);
+                    tmp1->link[i]->from = ft_strdup(tmp1->name_room);
                     tmp1->link[i]->step = j;
-                    new_node->next = 0;
+                    new_node->next = NULL;
                     i++;
                 }
             }
@@ -58,9 +74,9 @@ int ft_way(t_listlemin **head)
         }
         tmp1 = tmp1->next;
     }
-    
     tmp1 = *head;
     buff3 = buff;
+    buff4 = buff;
     buff2 = buff;
     
         while (tmp1)
@@ -68,29 +84,29 @@ int ft_way(t_listlemin **head)
             if (!ft_strcmp(tmp1->name_room, buff->n_r))
             {
                 tmp1->use = 1;
-                i = 0;
+                
+                i = 0; 
                 while (tmp1->link[i])
                 {
-                            
                     while(buff2->next)
                     {
                        buff2 = buff2->next;
-                       buff2->next = NULL;
                     }
-                    if (tmp1->link[i]->use != 1)
+                    if (tmp1->link[i]->use != 1 && ft_queue(buff, tmp1->link[i]->name_room) == 1)
                     {
-                        j++; // Проверить j!!!
+                        j++;
                         new_node = (t_road*)malloc(sizeof(t_road));
+                        new_node->next = NULL;
                         new_node->n_r = ft_strdup(tmp1->link[i]->name_room);
+                        tmp1->link[i]->from = ft_strdup(tmp1->name_room);
                         buff2->next = new_node;
                         tmp1->link[i]->step = j;
                     }
                     i++;
                 }
-                printf("%d-%d\n", tmp1->use, tmp1->step);
+                buff = buff->next;
                 if (tmp1->type_room == 2)
                     break ;
-                buff = buff->next;
                 tmp1 = *head;
                 continue ;
             }
@@ -102,6 +118,6 @@ int ft_way(t_listlemin **head)
         printf("%s", buff3->n_r);
         buff3 = buff3->next;
     }
-    
+    printf("\n");
     return (0);
 }

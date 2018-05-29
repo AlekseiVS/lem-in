@@ -6,7 +6,7 @@
 /*   By: osokoliu <osokoliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/14 12:54:03 by osokoliu          #+#    #+#             */
-/*   Updated: 2018/05/28 15:21:56 by osokoliu         ###   ########.fr       */
+/*   Updated: 2018/05/29 12:58:01 by osokoliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,9 +97,13 @@ int main(int argc, char **argv)
     ft_way(&tmp1);
     
     tmp1 = head;
+    
+    ft_road(&tmp1);
+     printf("\n");
+    tmp1 = head;
     while (tmp1)
     {
-        printf("%d-%d\n", tmp1->use, tmp1->step);
+        printf("%d-%d-%s\n", tmp1->use, tmp1->step,tmp1->from);
         tmp1 = tmp1->next;
     }
 

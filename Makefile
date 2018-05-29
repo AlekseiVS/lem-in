@@ -6,13 +6,13 @@
 #    By: osokoliu <osokoliu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/12 13:39:43 by osokoliu          #+#    #+#              #
-#    Updated: 2018/05/24 14:32:31 by osokoliu         ###   ########.fr        #
+#    Updated: 2018/05/29 12:27:59 by osokoliu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = lemin
 
-FILE_C =  main.c ft_ant.c ft_start_end.c ft_room.c ft_link.c ft_node.c ft_way.c
+FILE_C =  main.c ft_ant.c ft_start_end.c ft_room.c ft_link.c ft_node.c ft_way.c ft_road.c
 
 FILE_O = $(FILE_C:.c=.o)
 
