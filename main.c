@@ -6,7 +6,7 @@
 /*   By: osokoliu <osokoliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/14 12:54:03 by osokoliu          #+#    #+#             */
-/*   Updated: 2018/05/30 09:04:33 by osokoliu         ###   ########.fr       */
+/*   Updated: 2018/05/30 10:51:57 by osokoliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ int main(int argc, char **argv)
     tmp1 = head;
     while (tmp1)
     {
-        printf("%d-%d-%s\n", tmp1->use, tmp1->step,tmp1->from);
+        printf("%d-%s\n", tmp1->use, tmp1->from);
         tmp1 = tmp1->next;
     }
 
