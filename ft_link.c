@@ -6,7 +6,7 @@
 /*   By: osokoliu <osokoliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 14:57:12 by osokoliu          #+#    #+#             */
-/*   Updated: 2018/05/30 09:58:50 by osokoliu         ###   ########.fr       */
+/*   Updated: 2018/05/30 10:00:51 by osokoliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,29 +103,6 @@ int ft_link(char *line, t_listlemin **head)
     {
         ft_vertex(line, &vertex);
         ft_search_link(tmp1, tmp2, vertex, &count);
-        printf("%d\n", count);
-        // tmp1 = *head;
-        // while (tmp1)
-        // {
-        //     if(ft_strequ(tmp1->name_room, vertex.u) == 1)
-        //     {
-        //         count++;
-        //         tmp2 = *head;
-        //         while (tmp2)
-        //         {
-        //             if (ft_strequ(tmp2->name_room, vertex.v) == 1)
-        //             {
-        //                 count++;
-        //                 break ;
-        //             }
-        //             tmp2 = tmp2->next;
-        //         }
-        //         ft_entry_link(tmp1, tmp2);
-        //         ft_entry_link(tmp2, tmp1);
-        //         break ;
-        //     }
-        //     tmp1 = tmp1->next;
-        // }
         if (count == 2)
         {
             printf("%s\n", line);
