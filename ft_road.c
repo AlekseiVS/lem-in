@@ -6,7 +6,7 @@
 /*   By: osokoliu <osokoliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/29 12:27:22 by osokoliu          #+#    #+#             */
-/*   Updated: 2018/05/30 09:07:41 by osokoliu         ###   ########.fr       */
+/*   Updated: 2018/05/30 15:13:35 by osokoliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,15 @@ static t_listlemin *ft_find_finish(t_listlemin *buff)
     return (0);
 }
 
-int ft_road(t_listlemin **head)
+int ft_road(t_listlemin **head, int ant)
 {
     t_listlemin *tmp;
     t_road *road;
+    t_road *tmp_road;
     t_road *new_node;
+    ant++;
+    ant--;
+
 
     road = NULL;
     tmp = ft_find_finish(*head);
@@ -58,10 +62,12 @@ int ft_road(t_listlemin **head)
         new_node->n_r = ft_strdup(tmp->from);
         tmp = ft_find_room(*head, new_node->n_r);
     }
-    while (new_node)
+    tmp_road = road;
+    printf("road: ");
+    while (tmp_road)
     {
-        printf("%s", new_node->n_r);
-        new_node = new_node->next;
+        printf("%s", tmp_road->n_r);
+        tmp_road = tmp_road->next;
     }
     return (0);
 }

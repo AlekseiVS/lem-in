@@ -6,38 +6,13 @@
 /*   By: osokoliu <osokoliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/14 12:54:03 by osokoliu          #+#    #+#             */
-/*   Updated: 2018/05/30 10:51:57 by osokoliu         ###   ########.fr       */
+/*   Updated: 2018/05/30 15:11:12 by osokoliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "lemin.h"
 #include <stdio.h>
-
-
-// t_listlemin *create_elem(void)
-// {
-//     t_listlemin *new_node;
-
-//     new_node = (t_listlemin*)malloc(sizeof(t_listlemin));
-//     ft_bzero(new_node, sizeof(t_listlemin));
-//     return (new_node);
-// }
-
-// void add_back(t_listlemin **head, t_listlemin *new_node)
-// {
-//     t_listlemin *tmp;
-//     if (!(*head))
-//     {
-//         *head = new_node;
-//         return ;
-//     }
-//     tmp = *head;
-//     while(tmp->next != NULL)
-//         tmp = tmp->next;
-//     tmp->next = new_node;
-// }
-
 
 int main(int argc, char **argv)
 {
@@ -70,33 +45,33 @@ int main(int argc, char **argv)
         else
             exit(printf("ERROR\n"));
     }
-    tmp1 = head;
-    while (tmp1)
-    {
-        printf("%s-%d", tmp1->name_room, tmp1->type_room);
-        int i = 0;
-        while(tmp1->link[i])
-        {
-            printf("->%s", tmp1->link[i]->name_room);
-            i++;
-        }
-        printf("\n");
-        tmp1 = tmp1->next;
-    }
+    // tmp1 = head;
+    // while (tmp1)
+    // {
+    //     printf("%s-%d", tmp1->name_room, tmp1->type_room);
+    //     int i = 0;
+    //     while(tmp1->link[i])
+    //     {
+    //         printf("->%s", tmp1->link[i]->name_room);
+    //         i++;
+    //     }
+    //     printf("\n");
+    //     tmp1 = tmp1->next;
+    // }
 
     tmp1 = head;
     ft_way(&tmp1);
     
     tmp1 = head;
     
-    ft_road(&tmp1);
-     printf("\n");
-    tmp1 = head;
-    while (tmp1)
-    {
-        printf("%d-%s\n", tmp1->use, tmp1->from);
-        tmp1 = tmp1->next;
-    }
+    ft_road(&tmp1, ant);
+    printf("\n");
+    // tmp1 = head;
+    // while (tmp1)
+    // {
+    //     printf("%d-%s\n", tmp1->use, tmp1->from);
+    //     tmp1 = tmp1->next;
+    // }
 
     return (0);
 }
