@@ -6,7 +6,7 @@
 /*   By: osokoliu <osokoliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 14:57:12 by osokoliu          #+#    #+#             */
-/*   Updated: 2018/05/22 19:05:09 by osokoliu         ###   ########.fr       */
+/*   Updated: 2018/05/30 09:41:03 by osokoliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,22 +46,32 @@ static void ft_vertex(char *line, t_vertex *vertex)
     vertex->v = buff[1];
 }
 
+static void ft_entry_link(t_listlemin *tmp1, t_listlemin *tmp2)
+{
+    int i;
+
+    i = 0;
+    if (tmp1->link)
+    {
+        while(tmp1->link[i])
+        i++;
+    }
+    else
+    {
+        tmp1->link = (t_listlemin**)malloc(sizeof(t_listlemin*));
+    }
+    tmp1->link[i] = (t_listlemin*)malloc(sizeof(t_listlemin) * 0);
+    tmp1->link[i] = tmp2;
+    tmp1->link[i + 1] = 0;
+}
+
 int ft_link(char *line, t_listlemin **head)
 {
     t_vertex vertex;
     t_listlemin *tmp1;
     t_listlemin *tmp2;
-    t_listlemin *buff = 0;
     int count;
-    int count_room;
-    int i;
-
-    count_room = 0;
-    while (buff)
-    {
-        count_room++;
-        buff = buff->next;
-    }
+    // int i;
 
     count = 0;
     if (ft_valid_link(line) == 1)
@@ -83,32 +93,34 @@ int ft_link(char *line, t_listlemin **head)
                     }
                     tmp2 = tmp2->next;
                 }
-                i = 0;
-                if (tmp1->link)
-                {
-                    while(tmp1->link[i])
-                        i++;
-                }
-                else
-                {
-                    tmp1->link = (t_listlemin**)malloc(sizeof(t_listlemin*));
-                }
-                tmp1->link[i] = (t_listlemin*)malloc(sizeof(t_listlemin) * count_room);
-                tmp1->link[i] = tmp2;
-                tmp1->link[i + 1] = 0;
-                i = 0;
-                if (tmp2->link)
-                {
-                    while(tmp2->link[i])
-                        i++;
-                }
-                else
-                {
-                    tmp2->link = (t_listlemin**)malloc(sizeof(t_listlemin*));
-                }
-                tmp2->link[i] = (t_listlemin*)malloc(sizeof(t_listlemin) * count_room);
-                tmp2->link[i] = tmp1;
-                tmp2->link[i + 1] = 0;
+                ft_entry_link(tmp1, tmp2);
+                ft_entry_link(tmp2, tmp1);
+                // i = 0;
+                // if (tmp1->link)
+                // {
+                //     while(tmp1->link[i])
+                //         i++;
+                // }
+                // else
+                // {
+                //     tmp1->link = (t_listlemin**)malloc(sizeof(t_listlemin*));
+                // }
+                // tmp1->link[i] = (t_listlemin*)malloc(sizeof(t_listlemin) * 0);
+                // tmp1->link[i] = tmp2;
+                // tmp1->link[i + 1] = 0;
+                // i = 0;
+                // if (tmp2->link)
+                // {
+                //     while(tmp2->link[i])
+                //         i++;
+                // }
+                // else
+                // {
+                //     tmp2->link = (t_listlemin**)malloc(sizeof(t_listlemin*));
+                // }
+                // tmp2->link[i] = (t_listlemin*)malloc(sizeof(t_listlemin) * 0);
+                // tmp2->link[i] = tmp1;
+                // tmp2->link[i + 1] = 0;
                 break ;
             }
             tmp1 = tmp1->next;

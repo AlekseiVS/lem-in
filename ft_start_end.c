@@ -6,7 +6,7 @@
 /*   By: osokoliu <osokoliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 14:55:18 by osokoliu          #+#    #+#             */
-/*   Updated: 2018/05/17 13:07:04 by osokoliu         ###   ########.fr       */
+/*   Updated: 2018/05/29 17:00:01 by osokoliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int ft_start_end(char *line, int *type)
             *type = 1;
             printf("%s\n", line);
         }
-            
         else if (ft_strcmp(line, "##end") == 0)
         {
             *type = 2;

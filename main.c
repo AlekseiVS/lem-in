@@ -6,7 +6,7 @@
 /*   By: osokoliu <osokoliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/14 12:54:03 by osokoliu          #+#    #+#             */
-/*   Updated: 2018/05/29 12:58:01 by osokoliu         ###   ########.fr       */
+/*   Updated: 2018/05/30 09:04:33 by osokoliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,7 @@ int main(int argc, char **argv)
     int type = 0;
     head = NULL;
 
-    t_listlemin *tmp1;
-    // t_listlemin *tmp2;    
-
-
-
+    t_listlemin *tmp1;   
     while(get_next_line(fd, &line))
     {
         if (!line[0])
@@ -74,11 +70,6 @@ int main(int argc, char **argv)
         else
             exit(printf("ERROR\n"));
     }
-    // while (head)
-    // {
-    //     printf("%d", head->type_room);
-    //     head = head->next;
-    // }
     tmp1 = head;
     while (tmp1)
     {

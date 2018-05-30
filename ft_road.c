@@ -6,7 +6,7 @@
 /*   By: osokoliu <osokoliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/29 12:27:22 by osokoliu          #+#    #+#             */
-/*   Updated: 2018/05/29 16:22:31 by osokoliu         ###   ########.fr       */
+/*   Updated: 2018/05/30 09:07:41 by osokoliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,30 +41,21 @@ int ft_road(t_listlemin **head)
     t_listlemin *tmp;
     t_road *road;
     t_road *new_node;
-    t_road *buff;
-    int tg = 0;
 
     road = NULL;
-    buff = road;
     tmp = ft_find_finish(*head);
-
-    if (!road && tg == 0)
+    if (!road)
     {
         road = (t_road*)malloc(sizeof(t_road));
         road->next = NULL;
         road->n_r = ft_strdup(tmp->name_room);
-        tg = 1;
     }
     while (tmp->from)
     {
         new_node = (t_road*)malloc(sizeof(t_road));
-        // road->next = new_node;
-        // road = road->next;
-        // road->n_r = ft_strdup(tmp->from);
         new_node->next = road;
         road = new_node;
         new_node->n_r = ft_strdup(tmp->from);
-        // printf("%s", new_node->n_r);
         tmp = ft_find_room(*head, new_node->n_r);
     }
     while (new_node)
@@ -72,6 +63,5 @@ int ft_road(t_listlemin **head)
         printf("%s", new_node->n_r);
         new_node = new_node->next;
     }
-
     return (0);
 }
