@@ -6,7 +6,7 @@
 /*   By: osokoliu <osokoliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/24 12:30:19 by osokoliu          #+#    #+#             */
-/*   Updated: 2018/05/30 15:14:34 by osokoliu         ###   ########.fr       */
+/*   Updated: 2018/05/31 13:30:38 by osokoliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,12 +109,12 @@ int ft_way(t_listlemin **head)
     buff3 = buff;
     ft_next_queue(*head, tmp, buff, new_node);
    
-    printf("queue: ");
-    while (buff3)
-    {
-        printf("%s", buff3->n_r);
-        buff3 = buff3->next;
-    }
-    printf("\n");
+    // printf("queue: ");
+    // while (buff3)
+    // {
+    //     printf("%s", buff3->n_r);
+    //     buff3 = buff3->next;
+    // }
+    // printf("\n");
     return (0);
 }

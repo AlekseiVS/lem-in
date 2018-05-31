@@ -6,7 +6,7 @@
 /*   By: osokoliu <osokoliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 11:55:54 by osokoliu          #+#    #+#             */
-/*   Updated: 2018/05/31 10:09:38 by osokoliu         ###   ########.fr       */
+/*   Updated: 2018/05/31 15:24:37 by osokoliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,14 @@ typedef struct		s_road
 {
 	char			*n_r;
 	int				tg;
+	int				ant_room;
 	struct s_road	*next;
 }					t_road;
 
 typedef struct		s_ant
 {
 	int 			name_ant;
+	int				fin;
 	struct s_road	*path;
 }					t_ant;
 
