@@ -6,7 +6,7 @@
 /*   By: osokoliu <osokoliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/31 09:57:37 by osokoliu          #+#    #+#             */
-/*   Updated: 2018/05/31 16:59:26 by osokoliu         ###   ########.fr       */
+/*   Updated: 2018/06/01 19:48:01 by osokoliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,9 @@ void ft_ant_way(t_road *road, int ant)
 
     ft_arry_ant(road, &ant_arry, ant);
     end = ft_find_finish(road);
+    
+    
+
     while (1)
     {
         i = 0;
@@ -63,11 +66,15 @@ void ft_ant_way(t_road *road, int ant)
             if (ant_arry[i].path->next != NULL && ant_arry[i].path->next->tg == 0)
             {
                 if (print == 1)
-                    printf(" ");
+                    write(1," ", 1);
                 ant_arry[i].path->next->tg = 1;
                 ant_arry[i].path->tg = 0;
                 ant_arry[i].path = ant_arry[i].path->next;
-                printf("L%d-%s", ant_arry[i].name_ant, ant_arry[i].path->n_r);
+                write(1, "L", 1);
+                ft_putnbr(ant_arry[i].name_ant);
+                write(1, "-", 1);
+                ft_putstr(ant_arry[i].path->n_r);
+                // printf("L%d-%s", ant_arry[i].name_ant, ant_arry[i].path->n_r);
                 print = 1;
                 //Проверить работу с минусовой координатой!!!!!!!
             }
@@ -79,8 +86,8 @@ void ft_ant_way(t_road *road, int ant)
             }   
             i++;
         }
-        printf("\n");
         if (end->ant_room == ant)
             break ;
+        printf("\n");
     }
 }

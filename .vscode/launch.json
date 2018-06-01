@@ -9,8 +9,8 @@
             "type": "lldb",
             "request": "launch",
             "name": "Debug",
-            "program": "lemin",
-            "args": ["test"],
+            "program": "lem-in",
+            "args": ["test_a"],
             "cwd": "."
         }
     ]

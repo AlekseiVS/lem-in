@@ -6,7 +6,7 @@
 /*   By: osokoliu <osokoliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/24 12:30:19 by osokoliu          #+#    #+#             */
-/*   Updated: 2018/05/31 13:30:38 by osokoliu         ###   ########.fr       */
+/*   Updated: 2018/06/01 20:06:50 by osokoliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "lemin.h"
 #include <stdio.h>
 
-static void ft_c_start_queue(t_listlemin *tmp, t_road **buff, t_road *new_node)
+static void ft_c_start_queue(t_listlemin *tmp, t_road **start_q, t_road *new_node)
 {
     int i;
 
@@ -22,8 +22,8 @@ static void ft_c_start_queue(t_listlemin *tmp, t_road **buff, t_road *new_node)
     if (!new_node)
     {
         new_node = ft_create_elem_2();
-        *buff = new_node;
-        new_node->n_r = ft_strdup(tmp->link[i]->name_room);
+        *start_q = new_node;
+        new_node->n_r = ft_strdup(tmp->link[i]->name_room); ///seag foal
         tmp->link[i]->from = ft_strdup(tmp->name_room);
         i++;
         while (tmp->link[i])
@@ -38,52 +38,54 @@ static void ft_c_start_queue(t_listlemin *tmp, t_road **buff, t_road *new_node)
     }
 }
 
-static void ft_start_queue(t_listlemin *tmp, t_road **buff, t_road *new_node)
+static void ft_start_queue(t_listlemin *tmp, t_road **start_q, t_road *new_node)
 {
     while (tmp)
     {   
-        if (tmp->type_room == 1)
+        if (tmp->type_room == 1 && tmp->link)
         {
             tmp->use = 1;
-            ft_c_start_queue(tmp, buff, new_node);
+            if (!tmp->link)
+                exit(write(2, "ERROR\n", 6)); // -- етот if  убрал сигфол ниже
+            ft_c_start_queue(tmp, start_q, new_node);// Здесь был сигфол когда енд и старт не линковались ни с кем
             break ;
         }
         tmp = tmp->next;
     }
 }
 
-static void ft_c_next_queue(t_listlemin *tmp, t_road *buff, t_road **buff2, t_road *new_node)
+static void ft_c_next_queue(t_listlemin *tmp, t_road *start_q, t_road **end_q, t_road *new_node)
 {
     int i;
 
     i = 0;
     while (tmp->link[i])
     {
-        while((*buff2)->next)
-            *buff2 = (*buff2)->next;
-        if (tmp->link[i]->use != 1 && ft_cmp_queue(buff, tmp->link[i]->name_room) == 1)
+        while((*end_q)->next)
+            *end_q = (*end_q)->next;
+        if (tmp->link[i]->use != 1 && ft_cmp_queue(start_q, tmp->link[i]->name_room) == 1)
         {
             new_node = ft_create_elem_2();
             new_node->n_r = ft_strdup(tmp->link[i]->name_room);
             tmp->link[i]->from = ft_strdup(tmp->name_room);
-            (*buff2)->next = new_node;
+            (*end_q)->next = new_node;
         }
         i++;
     }
 }
 
-static void ft_next_queue(t_listlemin *head, t_listlemin *tmp, t_road *buff, t_road *new_node)
+static void ft_next_queue(t_listlemin *head, t_listlemin *tmp, t_road *start_q, t_road *new_node)
 {
-    t_road *buff2;
+    t_road *end_q;
 
-    buff2 = buff;
-    while (tmp)
+    end_q = start_q;
+    while (tmp && start_q)
     {
-        if (!ft_strcmp(tmp->name_room, (buff)->n_r))
+        if (!ft_strcmp(tmp->name_room, start_q->n_r)) //Здесь был сигфол когда енд и старт не линковались ни с кем
         {
             tmp->use = 1;
-            ft_c_next_queue(tmp, buff, &buff2, new_node);
-            buff = (buff)->next;
+            ft_c_next_queue(tmp, start_q, &end_q, new_node);
+            start_q = start_q->next;
             if (tmp->type_room == 2)
                 break ;
             tmp = head;
@@ -91,24 +93,26 @@ static void ft_next_queue(t_listlemin *head, t_listlemin *tmp, t_road *buff, t_r
         }
         tmp = tmp->next;
     }
+    if (!start_q)
+        exit(write(2, "ERROR\n", 6)); //-- етот if  убрал сигфол выше
 }
 
-int ft_way(t_listlemin **head)
+void ft_way(t_listlemin **head)
 {
    
     t_listlemin *tmp;
     t_road *new_node;
-    t_road *buff;
+    t_road *start_q;
     t_road *buff3;
   
     tmp = *head;
     new_node = NULL;
-    buff = NULL;
+    start_q = NULL;
     
-    ft_start_queue(tmp, &buff, new_node);
-    buff3 = buff;
-    ft_next_queue(*head, tmp, buff, new_node);
-   
+    ft_start_queue(tmp, &start_q, new_node);
+    buff3 = start_q;
+    // printf("FFF\n");
+    ft_next_queue(*head, tmp, start_q, new_node);
     // printf("queue: ");
     // while (buff3)
     // {
@@ -116,5 +120,4 @@ int ft_way(t_listlemin **head)
     //     buff3 = buff3->next;
     // }
     // printf("\n");
-    return (0);
 }
