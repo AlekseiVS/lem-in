@@ -6,7 +6,7 @@
 /*   By: osokoliu <osokoliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 14:57:12 by osokoliu          #+#    #+#             */
-/*   Updated: 2018/06/02 11:21:15 by osokoliu         ###   ########.fr       */
+/*   Updated: 2018/06/02 15:27:01 by osokoliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,25 @@ static int ft_valid_link(char *line)
 static void ft_vertex(char *line, t_vertex *vertex)
 {
     char **buff;
-    
+    int     i;
+
+    i = 0;
     buff = ft_strsplit(line, '-');
-    vertex->u = buff[0];
-    vertex->v = buff[1];
+    vertex->u = ft_strdup(buff[0]);
+    vertex->v = ft_strdup(buff[1]);
+    while(buff[i] != NULL)
+    {
+        free(buff[i]);
+        i++;
+    }
+    free(buff);
 }
 
 static void ft_entry_link(t_listlemin *tmp1, t_listlemin *tmp2)
 {
     int i;
     t_listlemin **buff;
+    
     i = 0;
     if (tmp1->link)
     {
@@ -112,7 +121,12 @@ int ft_link(char *line, t_listlemin **head)
     if (ft_valid_link(line) == 1)
     {
         ft_vertex(line, &vertex);
+        
         ft_search_link(tmp1, tmp2, vertex, &count);
+        
+        free(vertex.u);
+        free(vertex.v);
+       
         if (count == 2)
         {
             ft_putstr(line);
@@ -122,5 +136,6 @@ int ft_link(char *line, t_listlemin **head)
         else
             exit(write(2, "ERROR\n", 6));
     }
+    
     return(0);
 }

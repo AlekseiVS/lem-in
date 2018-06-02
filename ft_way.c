@@ -6,7 +6,7 @@
 /*   By: osokoliu <osokoliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/24 12:30:19 by osokoliu          #+#    #+#             */
-/*   Updated: 2018/06/02 11:18:01 by osokoliu         ###   ########.fr       */
+/*   Updated: 2018/06/02 15:13:23 by osokoliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,11 @@ void ft_way(t_listlemin **head)
     new_node = NULL;
     start_q = NULL;
     
+    buff3 = start_q;
     ft_start_queue(tmp, &start_q, new_node);
     buff3 = start_q;
     ft_next_queue(*head, tmp, start_q, new_node);
+    ft_del_2(buff3);
+    // system("leaks -quiet lem-in");
+    // exit(1);
 }

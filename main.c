@@ -6,7 +6,7 @@
 /*   By: osokoliu <osokoliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/14 12:54:03 by osokoliu          #+#    #+#             */
-/*   Updated: 2018/06/02 11:23:25 by osokoliu         ###   ########.fr       */
+/*   Updated: 2018/06/02 15:29:57 by osokoliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int main(void)
 
     t_listlemin *tmp;   
     while(get_next_line(fd, &line))
-    {
+    { 
         if (!line[0])
             exit(write(2, "ERROR\n", 6));
         else if (ft_ant(line, &ant) == 1)
@@ -61,20 +61,31 @@ int main(void)
             ;
         else if (ft_room(line, &type, &head) == 1)
             ;
-        else if (ft_link(line, &head) == 1)
+        else if (ft_link(line, &head) == 1) // leaks
             ;
         else
+        {
+            free(line);
             exit(write(2, "ERROR\n", 6));
+        }
+        free(line);
     }
     
     ft_enough_data(head);
     tmp = head;
+    
+
     ft_way(&tmp);
+
     tmp = head;
+    
     ft_road(&tmp, ant);
-
-    // system("leaks -quiet lemin");
-
+    system("leaks lem-in"); //-quiet 
+    exit(1);
+    ft_del_1(head);
+    // ft_del_1(tmp);
+    
+    
     return (0);
 }
 

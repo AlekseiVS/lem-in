@@ -6,7 +6,7 @@
 /*   By: osokoliu <osokoliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 14:55:29 by osokoliu          #+#    #+#             */
-/*   Updated: 2018/06/02 11:21:56 by osokoliu         ###   ########.fr       */
+/*   Updated: 2018/06/02 13:20:54 by osokoliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,9 @@ static int ft_valid_room(char *line)
 {
     int i;
     int space;
-    char *simbol;
 
     i = 0;
     space = 2;
-    simbol = "L";
     if (!ft_strchr(line, ' '))
         return (0);
     if (line[0] == 'L')
@@ -100,6 +98,6 @@ int ft_room(char *line, int *type, t_listlemin **head)
             exit(write(2, "ERROR\n", 6));
         ft_add_back(head, new_node);
         return (1);
-    } 
+    }
     return (0);
 }
