@@ -6,7 +6,7 @@
 /*   By: osokoliu <osokoliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/02 12:56:30 by osokoliu          #+#    #+#             */
-/*   Updated: 2018/06/02 13:10:36 by osokoliu         ###   ########.fr       */
+/*   Updated: 2018/06/02 17:31:19 by osokoliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,14 @@ void ft_del_1(t_listlemin *head)
     }
 }
 
-void ft_del_2(t_road *head)
+void ft_del_2(t_road **head)
 {
     t_road *tmp;
 
-    tmp = head;
-    while (head)
+    tmp = *head;
+    while (tmp)
     {
-        free(head->n_r);
-        tmp = head->next;
-        free(head);
-        head = tmp;
+        free(tmp);
+        tmp = tmp->next;
     }
 }

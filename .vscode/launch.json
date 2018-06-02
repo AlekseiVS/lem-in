@@ -10,7 +10,7 @@
             "request": "launch",
             "name": "Debug",
             "program": "lem-in",
-            "args": ["test_a"],
+            "args": ["test"],
             "cwd": "."
         }
     ]

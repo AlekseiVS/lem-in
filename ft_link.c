@@ -6,7 +6,7 @@
 /*   By: osokoliu <osokoliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 14:57:12 by osokoliu          #+#    #+#             */
-/*   Updated: 2018/06/02 15:27:01 by osokoliu         ###   ########.fr       */
+/*   Updated: 2018/06/02 18:03:07 by osokoliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ static int ft_valid_link(char *line)
     {
         return (1);
     }
-    exit(write(2, "ERROR\n", 6));
+    return (0);
+    //exit(write(2, "ERaROR\n", 6));
 }
 
 static void ft_vertex(char *line, t_vertex *vertex)
@@ -56,6 +57,7 @@ static void ft_vertex(char *line, t_vertex *vertex)
 static void ft_entry_link(t_listlemin *tmp1, t_listlemin *tmp2)
 {
     int i;
+    // int j;
     t_listlemin **buff;
     
     i = 0;
@@ -63,21 +65,28 @@ static void ft_entry_link(t_listlemin *tmp1, t_listlemin *tmp2)
     {
         while(tmp1->link[i])
             i++;
-        buff = (t_listlemin**)malloc(sizeof(t_listlemin*) * (i + 2));
+        buff = (t_listlemin**)ft_memalloc(sizeof(t_listlemin*) * (i + 2));
         i = 0;
         while(tmp1->link[i])
         {
             buff[i] = tmp1->link[i];
             i++;
         }
+        // free(tmp1->link);
+        // j = 0;
+        // while (tmp1->link[j])
+        // {
+        //     free(tmp1->link[j]);
+        //     i++;
+        // }
         free(tmp1->link);
         tmp1->link = buff;
     }
     else
     {
-        tmp1->link = (t_listlemin**)malloc(sizeof(t_listlemin*) * 2);
+        tmp1->link = (t_listlemin**)ft_memalloc(sizeof(t_listlemin*) * 2);
     }
-    tmp1->link[i] = (t_listlemin*)malloc(sizeof(t_listlemin));
+    // tmp1->link[i] = (t_listlemin*)ft_memalloc(sizeof(t_listlemin));
     tmp1->link[i] = tmp2;
     tmp1->link[i + 1] = 0;
 }
@@ -134,7 +143,7 @@ int ft_link(char *line, t_listlemin **head)
             return (1);
         }
         else
-            exit(write(2, "ERROR\n", 6));
+            exit(write(2, "ERRbOR\n", 6));
     }
     
     return(0);

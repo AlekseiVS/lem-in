@@ -6,7 +6,7 @@
 /*   By: osokoliu <osokoliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/14 12:54:03 by osokoliu          #+#    #+#             */
-/*   Updated: 2018/06/02 15:29:57 by osokoliu         ###   ########.fr       */
+/*   Updated: 2018/06/02 18:55:46 by osokoliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,27 +30,39 @@ void ft_enough_data(t_listlemin *head)
         exit(write(2, "ERROR\n", 6));
 }
 
-
-int main(void)
+static void ft_inicial(t_main *var)
 {
-    int fd = 0;
-    if (fd == -1)
-        exit(write(2, "ERROR\n", 6));
+    var->fd = 0;
+    var->tg_s = 0;
+    var->tg_e = 0;
+    var->line = 0;
+    var->ant = 0;
+    var->type = 0;
+}
 
-    int tg_s;
-    int tg_e;
-    
-    tg_s = 0;
-    tg_e = 0;
-
-    char *line = 0;
-    
+int main()
+{
     t_listlemin *head;
-    int ant = 0;
-    int type = 0;
-    head = NULL;
+    t_listlemin *tmp;
+    t_main      var;
 
-    t_listlemin *tmp;   
+    ft_inicial(&var);
+    // int fd;
+    // int tg_s;
+    // int tg_e;
+    // char *line;
+    // int ant;
+    // int type;
+    // fd = 0;
+    // tg_s = 0;
+    // tg_e = 0;
+    // line = 0;
+    head = NULL;
+    // ant = 0;
+    // type = 0;
+    
+    if (fd == -1)
+        exit(write(2, "ERROR\n", 6));   
     while(get_next_line(fd, &line))
     { 
         if (!line[0])
@@ -61,31 +73,21 @@ int main(void)
             ;
         else if (ft_room(line, &type, &head) == 1)
             ;
-        else if (ft_link(line, &head) == 1) // leaks
+        else if (ft_link(line, &head) == 1)
             ;
         else
         {
             free(line);
-            exit(write(2, "ERROR\n", 6));
+            break ;
         }
         free(line);
     }
-    
     ft_enough_data(head);
     tmp = head;
-    
-
     ft_way(&tmp);
-
-    tmp = head;
-    
     ft_road(&tmp, ant);
-    system("leaks lem-in"); //-quiet 
+    system("leaks -quiet  lem-in"); 
     exit(1);
-    ft_del_1(head);
-    // ft_del_1(tmp);
-    
-    
     return (0);
 }
 

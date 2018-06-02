@@ -6,7 +6,7 @@
 /*   By: osokoliu <osokoliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/29 12:27:22 by osokoliu          #+#    #+#             */
-/*   Updated: 2018/06/02 15:05:52 by osokoliu         ###   ########.fr       */
+/*   Updated: 2018/06/02 17:51:50 by osokoliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ void ft_road(t_listlemin **head, int ant)
     {
         road = (t_road*)malloc(sizeof(t_road));
         road->next = NULL;
-        road->n_r = ft_strdup(tmp->name_room);
+        road->n_r = tmp->name_room;
+        road->tg = 0;
     }
     
     while (tmp->from)
@@ -55,10 +56,11 @@ void ft_road(t_listlemin **head, int ant)
         new_node = (t_road*)malloc(sizeof(t_road));
         new_node->next = road;
         road = new_node;
-        new_node->n_r = ft_strdup(tmp->from);
+        new_node->n_r = tmp->from;
+        road->tg = 0;
         tmp = ft_find_room(*head, new_node->n_r);
     }
     
     ft_ant_way(road, ant);
-    ft_del_2(road);
+    ft_del_2(&road);
 }

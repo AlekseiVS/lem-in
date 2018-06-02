@@ -6,7 +6,7 @@
 /*   By: osokoliu <osokoliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/24 12:30:19 by osokoliu          #+#    #+#             */
-/*   Updated: 2018/06/02 15:13:23 by osokoliu         ###   ########.fr       */
+/*   Updated: 2018/06/02 17:33:45 by osokoliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ static void ft_c_start_queue(t_listlemin *tmp, t_road **start_q, t_road *new_nod
 {
     int i;
 
+
     i = 0;
     if (!new_node)
     {
@@ -24,15 +25,19 @@ static void ft_c_start_queue(t_listlemin *tmp, t_road **start_q, t_road *new_nod
             exit(write(2, "ERROR\n", 6));
         new_node = ft_create_elem_2();
         *start_q = new_node;
-        new_node->n_r = ft_strdup(tmp->link[i]->name_room);
-        tmp->link[i]->from = ft_strdup(tmp->name_room);
+        // new_node->n_r = ft_strdup(tmp->link[i]->name_room);
+        // tmp->link[i]->from = ft_strdup(tmp->name_room);
+        new_node->n_r = tmp->link[i]->name_room;
+        tmp->link[i]->from = tmp->name_room;
         i++;
         while (tmp->link[i])
         {
             new_node->next = ft_create_elem_2();
             new_node = new_node->next;
-            new_node->n_r = ft_strdup(tmp->link[i]->name_room);
-            tmp->link[i]->from = ft_strdup(tmp->name_room);
+            // new_node->n_r = ft_strdup(tmp->link[i]->name_room);
+            // tmp->link[i]->from = ft_strdup(tmp->name_room);
+            new_node->n_r = tmp->link[i]->name_room;
+            tmp->link[i]->from = tmp->name_room;
             new_node->next = NULL;
             i++;
         }
@@ -65,8 +70,10 @@ static void ft_c_next_queue(t_listlemin *tmp, t_road *start_q, t_road **end_q, t
         if (tmp->link[i]->use != 1 && ft_cmp_queue(start_q, tmp->link[i]->name_room) == 1)
         {
             new_node = ft_create_elem_2();
-            new_node->n_r = ft_strdup(tmp->link[i]->name_room);
-            tmp->link[i]->from = ft_strdup(tmp->name_room);
+            //new_node->n_r = ft_strdup(tmp->link[i]->name_room);
+            //tmp->link[i]->from = ft_strdup(tmp->name_room);
+            new_node->n_r = tmp->link[i]->name_room;
+            tmp->link[i]->from = tmp->name_room;
             (*end_q)->next = new_node;
         }
         i++;
@@ -108,11 +115,11 @@ void ft_way(t_listlemin **head)
     new_node = NULL;
     start_q = NULL;
     
-    buff3 = start_q;
     ft_start_queue(tmp, &start_q, new_node);
     buff3 = start_q;
+    // buff3 = start_q;
     ft_next_queue(*head, tmp, start_q, new_node);
-    ft_del_2(buff3);
+    ft_del_2(&buff3);
     // system("leaks -quiet lem-in");
     // exit(1);
 }
