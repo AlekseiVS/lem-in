@@ -6,13 +6,12 @@
 /*   By: osokoliu <osokoliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/29 12:27:22 by osokoliu          #+#    #+#             */
-/*   Updated: 2018/06/01 17:39:41 by osokoliu         ###   ########.fr       */
+/*   Updated: 2018/06/02 11:17:37 by osokoliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "lemin.h"
-#include <stdio.h>
 
 static t_listlemin *ft_find_room(t_listlemin *buff, char *name_room)
 {
@@ -40,9 +39,8 @@ void ft_road(t_listlemin **head, int ant)
 {
     t_listlemin *tmp;
     t_road *road;
-    t_road *tmp_road;
+    
     t_road *new_node;
-    // int i = 0;
 
     road = NULL;
     tmp = ft_find_finish(*head);
@@ -54,30 +52,11 @@ void ft_road(t_listlemin **head, int ant)
     }
     while (tmp->from)
     {
-        // if (tmp->type_room == 2 || tmp->type_room == 1)
-        //     i++;
         new_node = (t_road*)malloc(sizeof(t_road));
         new_node->next = road;
         road = new_node;
         new_node->n_r = ft_strdup(tmp->from);
         tmp = ft_find_room(*head, new_node->n_r);
     }
-    // if (i != 2)
-    //     exit(write(2, "ERROR\n", 6));
-
-
-
-
-
-    // }
-    tmp_road = road;
-    printf("road: ");
-    while (tmp_road)
-    {
-        printf("%s", tmp_road->n_r);
-        tmp_road = tmp_road->next;
-    }
-    printf("\n");
     ft_ant_way(road, ant);
-
 }

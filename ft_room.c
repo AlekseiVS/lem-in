@@ -6,13 +6,12 @@
 /*   By: osokoliu <osokoliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 14:55:29 by osokoliu          #+#    #+#             */
-/*   Updated: 2018/06/01 19:29:42 by osokoliu         ###   ########.fr       */
+/*   Updated: 2018/06/02 11:21:56 by osokoliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "lemin.h"
-#include <stdio.h>
 
 static int ft_valid_links(t_listlemin *head)
 {
@@ -47,10 +46,10 @@ static int ft_valid_room(char *line)
     i = 0;
     space = 2;
     simbol = "L";
-    if (!ft_strchr(line, ' ')) //Уточнить или так можно!
+    if (!ft_strchr(line, ' '))
         return (0);
-    if (line[0] == 'L') //Уточнить или так можно!
-        exit(printf("ERROR\n"));
+    if (line[0] == 'L')
+        exit(write(2, "ERROR\n", 6));
     while(line && line[i] != ' ')
         i++;
     while (line[i] == ' ' && line[i+1] != ' ')
@@ -61,12 +60,13 @@ static int ft_valid_room(char *line)
             i++;
         while(ft_isdigit(line[i]) == 1)
             i++;
-        if (space < 0)
-            exit(printf("ERROR\n"));
+        if (space < 0) // Попробовать постасить !=2
+            exit(write(2, "ERROR\n", 6));
     }
     if (line[i] || space != 0)
-        exit(printf("ERROR\n"));
-    printf("%s\n", line);
+        exit(write(2, "ERROR\n", 6));
+    ft_putstr(line);
+    write(1, "\n", 1);
     return (1);
 }
 

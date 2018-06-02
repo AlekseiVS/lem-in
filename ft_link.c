@@ -6,13 +6,12 @@
 /*   By: osokoliu <osokoliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 14:57:12 by osokoliu          #+#    #+#             */
-/*   Updated: 2018/06/01 16:04:20 by osokoliu         ###   ########.fr       */
+/*   Updated: 2018/06/02 11:21:15 by osokoliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "lemin.h"
-#include <stdio.h>
 
 static int ft_valid_link(char *line)
 {
@@ -34,7 +33,7 @@ static int ft_valid_link(char *line)
     {
         return (1);
     }
-    exit(printf("ERROR\n"));
+    exit(write(2, "ERROR\n", 6));
 }
 
 static void ft_vertex(char *line, t_vertex *vertex)
@@ -116,11 +115,12 @@ int ft_link(char *line, t_listlemin **head)
         ft_search_link(tmp1, tmp2, vertex, &count);
         if (count == 2)
         {
-            printf("%s\n", line);
+            ft_putstr(line);
+            write(1, "\n", 1);
             return (1);
         }
         else
-            exit(printf("ERROR"));
+            exit(write(2, "ERROR\n", 6));
     }
     return(0);
 }

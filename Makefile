@@ -6,7 +6,7 @@
 #    By: osokoliu <osokoliu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/12 13:39:43 by osokoliu          #+#    #+#              #
-#    Updated: 2018/06/01 19:16:24 by osokoliu         ###   ########.fr        #
+#    Updated: 2018/06/02 10:52:25 by osokoliu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ FILE_O = $(FILE_C:.c=.o)
 
 GCC = gcc
 
-FLAG = -g -Wall -Wextra -Werror
+FLAG = -Wall -Wextra -Werror
 
 LIB_INC = -I libft/
 

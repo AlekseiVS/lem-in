@@ -6,13 +6,12 @@
 /*   By: osokoliu <osokoliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/24 12:21:51 by osokoliu          #+#    #+#             */
-/*   Updated: 2018/05/25 11:16:24 by osokoliu         ###   ########.fr       */
+/*   Updated: 2018/06/02 11:17:32 by osokoliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "lemin.h"
-#include <stdio.h>
 
 t_listlemin *ft_create_elem(void)
 {

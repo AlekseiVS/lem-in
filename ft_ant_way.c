@@ -6,13 +6,12 @@
 /*   By: osokoliu <osokoliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/31 09:57:37 by osokoliu          #+#    #+#             */
-/*   Updated: 2018/06/02 10:29:30 by osokoliu         ###   ########.fr       */
+/*   Updated: 2018/06/02 11:16:53 by osokoliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "lemin.h"
-#include <stdio.h>
 
 static t_road *ft_find_finish(t_road *buff)
 {
@@ -55,8 +54,6 @@ void ft_ant_way(t_road *road, int ant)
     ft_arry_ant(road, &ant_arry, ant);
     end = ft_find_finish(road);
     
-    
-
     while (1)
     {
         i = 0;
@@ -74,9 +71,7 @@ void ft_ant_way(t_road *road, int ant)
                 ft_putnbr(ant_arry[i].name_ant);
                 write(1, "-", 1);
                 ft_putstr(ant_arry[i].path->n_r);
-                // printf("L%d-%s", ant_arry[i].name_ant, ant_arry[i].path->n_r);
                 print = 1;
-                //Проверить работу с минусовой координатой!!!!!!!
             }
             else if (ant_arry[i].path->next == NULL && !ant_arry[i].fin)
             {
