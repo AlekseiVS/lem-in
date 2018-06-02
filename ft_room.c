@@ -6,7 +6,7 @@
 /*   By: osokoliu <osokoliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 14:55:29 by osokoliu          #+#    #+#             */
-/*   Updated: 2018/06/02 21:59:36 by osokoliu         ###   ########.fr       */
+/*   Updated: 2018/06/02 22:37:17 by osokoliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ static	int		ft_valid_links(t_listlemin *head)
 	return (1);
 }
 
-static	int		ft_valid_duble_room(t_listlemin *head, char *name_room, int x, int y)
+static	int		ft_valid_duble_room(t_listlemin *head,
+				char *name_room, int x, int y)
 {
 	while (head)
 	{
@@ -65,7 +66,8 @@ static	int		ft_valid_room(char *line)
 	return (1);
 }
 
-static	void	ft_room2(t_listlemin **head, t_listlemin **new_node, int *type, char *line)
+static	void	ft_room2(t_listlemin **head,
+				t_listlemin **new_node, int *type, char *line)
 {
 	int			j;
 	int			i;

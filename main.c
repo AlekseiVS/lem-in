@@ -6,7 +6,7 @@
 /*   By: osokoliu <osokoliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/14 12:54:03 by osokoliu          #+#    #+#             */
-/*   Updated: 2018/06/02 22:09:19 by osokoliu         ###   ########.fr       */
+/*   Updated: 2018/06/02 23:00:02 by osokoliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ void			ft_pars1(t_m *var, t_listlemin **head)
 			exit(write(2, "ERROR\n", 6));
 		else if (ft_ant(var->line, &(var->ant)) == 1)
 			;
-		else if (ft_start_end(var->line, &(var->type), &(var->tg_s), &(var->tg_e)) == 1)
+		else if (ft_start_end(var->line, &(var->type),
+		&(var->tg_s), &(var->tg_e)) == 1)
 			;
 		else if (ft_room(var->line, &(var->type), head) == 1)
 			;

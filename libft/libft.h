@@ -6,7 +6,7 @@
 /*   By: osokoliu <osokoliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 09:25:44 by osokoliu          #+#    #+#             */
-/*   Updated: 2018/06/02 12:30:54 by osokoliu         ###   ########.fr       */
+/*   Updated: 2018/06/02 22:34:30 by osokoliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,28 +34,6 @@ typedef struct		s_split
 	char const		*start;
 	size_t			len;
 }					t_split;
-
-
-/////////////lemin//////////////////////
-
-
-
-
-
-
-
-// int					ft_start_end(char *line, t_listlemin tmp);
-// int					ft_ant(char *line);
-// int					ft_room(char *line);
-// int					ft_link(char *line);
-
-
-
-
-
-///////////////////////////////////////
-
-
 
 typedef struct		s_main
 {

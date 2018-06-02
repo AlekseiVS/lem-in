@@ -6,7 +6,7 @@
 /*   By: osokoliu <osokoliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 14:57:12 by osokoliu          #+#    #+#             */
-/*   Updated: 2018/06/02 21:52:45 by osokoliu         ###   ########.fr       */
+/*   Updated: 2018/06/02 22:54:00 by osokoliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,8 @@ static	void	ft_entry_link(t_listlemin *tmp1, t_listlemin *tmp2)
 	tmp1->link[i + 1] = 0;
 }
 
-void			ft_s_l(t_listlemin *tmp1, t_listlemin *tmp2, t_vertex vertex, int *count)
+void			ft_s_l(t_listlemin *tmp1, t_listlemin *tmp2,
+				t_vertex vertex, int *count)
 {
 	while (tmp1)
 	{
@@ -130,7 +131,7 @@ int				ft_link(char *line, t_listlemin **head)
 			return (1);
 		}
 		else
-			exit(write(2, "ERRbOR\n", 6));
+			exit(write(2, "ERROR\n", 6));
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: osokoliu <osokoliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/24 12:30:19 by osokoliu          #+#    #+#             */
-/*   Updated: 2018/06/02 22:06:14 by osokoliu         ###   ########.fr       */
+/*   Updated: 2018/06/02 22:37:47 by osokoliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ static	void	ft_s_q(t_listlemin *tmp, t_road **start_q, t_road *n_n)
 	}
 }
 
-void			ft_c_nq(t_listlemin *tmp, t_road *start_q, t_road **end_q, t_road *n_n)
+void			ft_c_nq(t_listlemin *tmp, t_road *start_q,
+				t_road **end_q, t_road *n_n)
 {
 	int			i;
 
@@ -74,7 +75,8 @@ void			ft_c_nq(t_listlemin *tmp, t_road *start_q, t_road **end_q, t_road *n_n)
 	}
 }
 
-void			ft_n_q(t_listlemin *head, t_listlemin *tmp, t_road *start_q, t_road *n_n)
+void			ft_n_q(t_listlemin *head, t_listlemin *tmp,
+				t_road *start_q, t_road *n_n)
 {
 	t_road		*end_q;
 
