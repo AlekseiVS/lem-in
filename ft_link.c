@@ -6,145 +6,131 @@
 /*   By: osokoliu <osokoliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 14:57:12 by osokoliu          #+#    #+#             */
-/*   Updated: 2018/06/02 18:03:07 by osokoliu         ###   ########.fr       */
+/*   Updated: 2018/06/02 21:52:45 by osokoliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "lemin.h"
 
-static int ft_valid_link(char *line)
+static	int		ft_valid_link(char *line)
 {
-    int i;
-    int count;
-    
-    i = 0;
-    count = 0;
-    while(line[i] && (line[i]) != ' ')
-    {   
-        i++;
-        if(line[i] == '-')
-        {
-            i++;
-            count++;
-        }
-    }
-    if (line[i] == '\0' && count == 1)
-    {
-        return (1);
-    }
-    return (0);
-    //exit(write(2, "ERaROR\n", 6));
+	int i;
+	int count;
+
+	i = 0;
+	count = 0;
+	while (line[i] && (line[i]) != ' ')
+	{
+		i++;
+		if (line[i] == '-')
+		{
+			i++;
+			count++;
+		}
+	}
+	if (line[i] == '\0' && count == 1)
+	{
+		return (1);
+	}
+	return (0);
 }
 
-static void ft_vertex(char *line, t_vertex *vertex)
+static	void	ft_vertex(char *line, t_vertex *vertex)
 {
-    char **buff;
-    int     i;
+	char		**buff;
+	int			i;
 
-    i = 0;
-    buff = ft_strsplit(line, '-');
-    vertex->u = ft_strdup(buff[0]);
-    vertex->v = ft_strdup(buff[1]);
-    while(buff[i] != NULL)
-    {
-        free(buff[i]);
-        i++;
-    }
-    free(buff);
+	i = 0;
+	buff = ft_strsplit(line, '-');
+	vertex->u = ft_strdup(buff[0]);
+	vertex->v = ft_strdup(buff[1]);
+	while (buff[i] != NULL)
+	{
+		free(buff[i]);
+		i++;
+	}
+	free(buff);
 }
 
-static void ft_entry_link(t_listlemin *tmp1, t_listlemin *tmp2)
+static	void	ft_entry_link(t_listlemin *tmp1, t_listlemin *tmp2)
 {
-    int i;
-    // int j;
-    t_listlemin **buff;
-    
-    i = 0;
-    if (tmp1->link)
-    {
-        while(tmp1->link[i])
-            i++;
-        buff = (t_listlemin**)ft_memalloc(sizeof(t_listlemin*) * (i + 2));
-        i = 0;
-        while(tmp1->link[i])
-        {
-            buff[i] = tmp1->link[i];
-            i++;
-        }
-        // free(tmp1->link);
-        // j = 0;
-        // while (tmp1->link[j])
-        // {
-        //     free(tmp1->link[j]);
-        //     i++;
-        // }
-        free(tmp1->link);
-        tmp1->link = buff;
-    }
-    else
-    {
-        tmp1->link = (t_listlemin**)ft_memalloc(sizeof(t_listlemin*) * 2);
-    }
-    // tmp1->link[i] = (t_listlemin*)ft_memalloc(sizeof(t_listlemin));
-    tmp1->link[i] = tmp2;
-    tmp1->link[i + 1] = 0;
+	int			i;
+	t_listlemin **buff;
+
+	i = 0;
+	if (tmp1->link)
+	{
+		while (tmp1->link[i])
+			i++;
+		buff = (t_listlemin**)ft_memalloc(sizeof(t_listlemin*) * (i + 2));
+		i = 0;
+		while (tmp1->link[i])
+		{
+			buff[i] = tmp1->link[i];
+			i++;
+		}
+		free(tmp1->link);
+		tmp1->link = buff;
+	}
+	else
+	{
+		tmp1->link = (t_listlemin**)ft_memalloc(sizeof(t_listlemin*) * 2);
+	}
+	tmp1->link[i] = tmp2;
+	tmp1->link[i + 1] = 0;
 }
 
-static void ft_search_link(t_listlemin *tmp1, t_listlemin *tmp2, t_vertex vertex, int *count)
+void			ft_s_l(t_listlemin *tmp1, t_listlemin *tmp2, t_vertex vertex, int *count)
 {
-    while (tmp1)
-    {
-        if(ft_strequ(tmp1->name_room, vertex.u) == 1)
-        {
-            (*count)++;
-            while (tmp2)
-            {
-                if (ft_strequ(tmp2->name_room, vertex.v) == 1)
-                {
-                    (*count)++;
-                    break ;
-                }
-                tmp2 = tmp2->next;
-            }
-            if (!tmp1 || !tmp2)
-                exit(write(1, "ERROR\n", 6));
-            ft_entry_link(tmp1, tmp2);
-            ft_entry_link(tmp2, tmp1);
-            break ;
-        }
-        tmp1 = tmp1->next;
-    }
+	while (tmp1)
+	{
+		if (ft_strequ(tmp1->name_room, vertex.u) == 1)
+		{
+			(*count)++;
+			while (tmp2)
+			{
+				if (ft_strequ(tmp2->name_room, vertex.v) == 1)
+				{
+					(*count)++;
+					break ;
+				}
+				tmp2 = tmp2->next;
+			}
+			if (!tmp1 || !tmp2)
+				exit(write(1, "ERROR\n", 6));
+			ft_entry_link(tmp1, tmp2);
+			ft_entry_link(tmp2, tmp1);
+			break ;
+		}
+		tmp1 = tmp1->next;
+	}
 }
 
-int ft_link(char *line, t_listlemin **head)
+int				ft_link(char *line, t_listlemin **head)
 {
-    t_vertex vertex;
-    t_listlemin *tmp1;
-    t_listlemin *tmp2;
-    int count;
+	t_vertex	vertex;
+	t_listlemin *tmp1;
+	t_listlemin *tmp2;
+	int			count;
 
-    tmp1 = *head;
-    tmp2 = *head;
-    count = 0;
-    if (ft_valid_link(line) == 1)
-    {
-        ft_vertex(line, &vertex);
-        
-        ft_search_link(tmp1, tmp2, vertex, &count);
-        
-        free(vertex.u);
-        free(vertex.v);
-       
-        if (count == 2)
-        {
-            ft_putstr(line);
-            write(1, "\n", 1);
-            return (1);
-        }
-        else
-            exit(write(2, "ERRbOR\n", 6));
-    }
-    
-    return(0);
+	tmp1 = *head;
+	tmp2 = *head;
+	count = 0;
+	if (ft_valid_link(line) == 1)
+	{
+		ft_vertex(line, &vertex);
+		ft_s_l(tmp1, tmp2, vertex, &count);
+		free(vertex.u);
+		free(vertex.v);
+		if (count == 2)
+		{
+			ft_putstr(line);
+			write(1, "\n", 1);
+			return (1);
+		}
+		else
+			exit(write(2, "ERRbOR\n", 6));
+	}
+	return (0);
 }

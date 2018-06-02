@@ -6,7 +6,7 @@
 /*   By: osokoliu <osokoliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 11:55:54 by osokoliu          #+#    #+#             */
-/*   Updated: 2018/06/02 18:52:35 by osokoliu         ###   ########.fr       */
+/*   Updated: 2018/06/02 21:23:18 by osokoliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ typedef struct		s_ant
 
 
 
-typedef struct		s_main
+typedef struct		s_m
 {
 	int 			fd;
     int 			tg_s;
@@ -60,7 +60,7 @@ typedef struct		s_main
     char 			*line;
     int 			ant;
     int 			type;
-}					t_main;
+}					t_m;
 
 
 
@@ -76,10 +76,12 @@ t_listlemin 		*ft_create_elem(void);
 void				ft_add_back(t_listlemin **head, t_listlemin *new_node);
 void				ft_way(t_listlemin **head);
 t_road 				*ft_create_elem_2(void);
-void 				ft_add_back_2(t_road **head, t_road *new_node);
 void				ft_road(t_listlemin **head, int ant);
 int					ft_cmp_queue(t_road *buff, char *name_room);
 void				ft_ant_way(t_road *road, int ant);
 void 				ft_del_1(t_listlemin *head);
 void 				ft_del_2(t_road **head);
+void				ft_pars1(t_m *var, t_listlemin **head);
+void				ft_room_3(char *line, int space, int i);
+
 #endif
