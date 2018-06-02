@@ -6,7 +6,7 @@
 /*   By: osokoliu <osokoliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/14 12:54:03 by osokoliu          #+#    #+#             */
-/*   Updated: 2018/06/01 19:32:45 by osokoliu         ###   ########.fr       */
+/*   Updated: 2018/06/02 09:47:29 by osokoliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int main(int argc, char **argv)
     int fd = open(argv[1], O_RDONLY);
     if (fd == -1)
         exit(printf("ERROR\n"));
-
+    // setbuf(stdout, NULL);
 
     int tg_s;
     int tg_e;

@@ -6,7 +6,7 @@
 /*   By: osokoliu <osokoliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/31 09:57:37 by osokoliu          #+#    #+#             */
-/*   Updated: 2018/06/01 19:48:01 by osokoliu         ###   ########.fr       */
+/*   Updated: 2018/06/02 10:29:30 by osokoliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,6 @@ void ft_ant_way(t_road *road, int ant)
         }
         if (end->ant_room == ant)
             break ;
-        printf("\n");
+        write(1, "\n", 1);
     }
 }

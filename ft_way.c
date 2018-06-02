@@ -6,7 +6,7 @@
 /*   By: osokoliu <osokoliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/24 12:30:19 by osokoliu          #+#    #+#             */
-/*   Updated: 2018/06/01 20:06:50 by osokoliu         ###   ########.fr       */
+/*   Updated: 2018/06/02 10:15:54 by osokoliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ static void ft_c_start_queue(t_listlemin *tmp, t_road **start_q, t_road *new_nod
     i = 0;
     if (!new_node)
     {
+        if (!tmp->link)
+            exit(write(2, "ERROR\n", 6)); // Убрали с пашей сигфолт
         new_node = ft_create_elem_2();
         *start_q = new_node;
         new_node->n_r = ft_strdup(tmp->link[i]->name_room); ///seag foal
@@ -42,11 +44,11 @@ static void ft_start_queue(t_listlemin *tmp, t_road **start_q, t_road *new_node)
 {
     while (tmp)
     {   
-        if (tmp->type_room == 1 && tmp->link)
+        if (tmp->type_room == 1)// && tmp->link
         {
             tmp->use = 1;
-            if (!tmp->link)
-                exit(write(2, "ERROR\n", 6)); // -- етот if  убрал сигфол ниже
+            // if (!tmp->link)
+            //     exit(write(2, "ERROR\n", 6)); // -- етот if  убрал сигфол ниже
             ft_c_start_queue(tmp, start_q, new_node);// Здесь был сигфол когда енд и старт не линковались ни с кем
             break ;
         }
@@ -79,8 +81,10 @@ static void ft_next_queue(t_listlemin *head, t_listlemin *tmp, t_road *start_q, 
     t_road *end_q;
 
     end_q = start_q;
-    while (tmp && start_q)
+    while (tmp) //&& start_q
     {
+        if (!start_q)
+            exit(write(2, "ERROR\n", 6));
         if (!ft_strcmp(tmp->name_room, start_q->n_r)) //Здесь был сигфол когда енд и старт не линковались ни с кем
         {
             tmp->use = 1;
@@ -93,8 +97,8 @@ static void ft_next_queue(t_listlemin *head, t_listlemin *tmp, t_road *start_q, 
         }
         tmp = tmp->next;
     }
-    if (!start_q)
-        exit(write(2, "ERROR\n", 6)); //-- етот if  убрал сигфол выше
+    // if (!start_q)
+    //     exit(write(2, "ERROR\n", 6)); //-- етот if  убрал сигфол выше
 }
 
 void ft_way(t_listlemin **head)
